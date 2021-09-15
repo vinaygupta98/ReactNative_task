@@ -15,8 +15,8 @@ import Header from '../../common/Header';
 import Footer from '../../common/Footer';
 
 const Login = ({navigation}) => {
-  const [email, onChangeEmail] = useState('demo@demo.gmail.com');
-  const [password, onChangePassword] = useState('demo');
+  const [email, onChangeEmail] = useState(null);
+  const [password, onChangePassword] = useState(null);
 
   const styles = StyleSheet.create({
     container: {
@@ -82,7 +82,14 @@ const Login = ({navigation}) => {
         }}>
         <Button
           title="Forget password"
-          onPress={() => Alert.alert('Forget password Clicked')}
+          onPress={() =>
+            email
+              ? Alert.alert(
+                  'Forget password ?',
+                  `Instruction for password reset sent to ${email}`,
+                )
+              : Alert.alert('Forget password ?', `Enter Email first `)
+          }
         />
         <Button title="Sign-up" onPress={() => navigation.navigate('signup')} />
       </View>

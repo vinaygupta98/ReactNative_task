@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, Button, Alert} from 'react-native';
 import RadioButton from '../../components/RadioButton';
 import Header from '../../common/Header';
+import DatePicker from 'react-native-datepicker';
 const AgedCare = () => {
   const Options = [
     {
@@ -20,6 +21,7 @@ const AgedCare = () => {
       icon: 'dot',
     },
   ];
+  const [date, setDate] = useState(null);
 
   return (
     <View
@@ -35,6 +37,7 @@ const AgedCare = () => {
           height: 400,
           display: 'flex',
           justifyContent: 'center',
+          alignItems: 'center',
         }}>
         <Text
           style={{
@@ -43,11 +46,36 @@ const AgedCare = () => {
             textAlign: 'center',
             paddingVertical: 30,
             marginBottom: 100,
-            backgroundColor: 'lightgreen',
           }}>
           Aged Care
         </Text>
         <RadioButton options={Options} />
+        <DatePicker
+          style={{
+            width: 250,
+            marginVertical: 25,
+          }}
+          date={date}
+          mode="date"
+          placeholder="select date"
+          format="DD-MM-YYYY"
+          maxDate={new Date()}
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          //   customStyles={{
+          //     dateIcon: {
+          //       position: 'absolute',
+          //       left: 0,
+          //       top: 4,
+          //       marginLeft: 0,
+          //     },
+          //     dateInput: {
+          //       marginLeft: 36,
+          //     },
+          //   }}
+          showIcon={false}
+          onDateChange={setDate}
+        />
         <Button
           title="Book Appointment"
           accessibilityLabel="Book Appointmnet"
