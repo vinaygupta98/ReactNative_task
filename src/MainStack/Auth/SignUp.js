@@ -68,33 +68,35 @@ const SignUp = ({navigation}) => {
         <RadioButton options={Options} />
         <TextInput
           style={styles.input}
-          onChangeText={e => setData({name: e})}
+          onChangeText={e => setData({...data, name: e})}
           value={data.name}
           placeholder="Name"
         />
         <TextInput
           style={styles.input}
-          onChangeText={e => setData({age: e})}
+          onChangeText={e => setData({...data, age: e})}
           value={data.age}
           placeholder="Age"
+          keyboardType="numeric"
         />
         <TextInput
           style={styles.input}
-          onChangeText={e => setData({address: e})}
+          onChangeText={e => setData({...data, address: e})}
           value={data.address}
           placeholder="Localization"
         />
         <TextInput
           style={styles.input}
-          onChangeText={e => setData({email: e})}
+          onChangeText={e => setData({...data, email: e})}
           value={data.email}
           placeholder="Email"
         />
         <TextInput
           style={styles.input}
-          onChangeText={e => setData({password: e})}
+          onChangeText={e => setData({...data, password: e})}
           value={data.password}
           placeholder="Password"
+          secureTextEntry={true}
         />
         <Text style={{color: 'red', textAlign: 'right'}}>
           *Password not correct

@@ -61,6 +61,7 @@ const Login = ({navigation}) => {
             onChangeText={onChangePassword}
             value={password}
             placeholder="Enter Password"
+            secureTextEntry={true}
           />
           <Text style={{color: 'red', textAlign: 'right'}}>
             *Password not correct

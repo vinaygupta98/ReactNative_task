@@ -48,7 +48,7 @@ const Pickups = () => {
             paddingVertical: 5,
             fontWeight: '700',
           }}
-          onChangeText={e => setFormData({name: e})}
+          onChangeText={e => setFormData({...data, name: e})}
           value={data.name}
           placeholder="Name"
         />
@@ -60,7 +60,7 @@ const Pickups = () => {
             paddingVertical: 5,
             fontWeight: '700',
           }}
-          onChangeText={e => setFormData({address: e})}
+          onChangeText={e => setFormData({...data, address: e})}
           value={data.address}
           placeholder="Address"
         />
@@ -72,7 +72,7 @@ const Pickups = () => {
             paddingVertical: 5,
             fontWeight: '700',
           }}
-          onChangeText={e => setFormData({disability: e})}
+          onChangeText={e => setFormData({...data, disability: e})}
           value={data.disability}
           placeholder="Disability"
         />
@@ -84,7 +84,7 @@ const Pickups = () => {
             paddingVertical: 5,
             fontWeight: '700',
           }}
-          onChangeText={e => setFormData({age: e})}
+          onChangeText={e => setFormData({...data, age: e})}
           value={data.age}
           placeholder="age"
           keyboardType="numeric"
@@ -97,7 +97,7 @@ const Pickups = () => {
             paddingVertical: 5,
             fontWeight: '700',
           }}
-          onChangeText={e => setFormData({proof: e})}
+          onChangeText={e => setFormData({...data, proof: e})}
           value={data.proof}
           placeholder="Legal proof as ad"
         />
@@ -123,7 +123,7 @@ const Pickups = () => {
           //   }}
           showIcon={false}
           onDateChange={date => {
-            setFormData({date: date});
+            setFormData({...data, date: date});
           }}
         />
       </View>
