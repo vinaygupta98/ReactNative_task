@@ -11,38 +11,13 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import Header from '../../common/Header';
-import Footer from '../../common/Footer';
+import Header from '../common/Header';
+import Footer from '../common/Footer';
 
-const Login = ({navigation}) => {
-  const [email, onChangeEmail] = useState(null);
-  const [password, onChangePassword] = useState(null);
+const LoginScreen = ({navigation}) => {
+  const [email, onChangeEmail] = useState('demo@gmail.com');
+  const [password, onChangePassword] = useState('demo');
 
-  const styles = StyleSheet.create({
-    container: {
-      width: '100%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      // justifyContent: 'flex-start',
-    },
-    heading: {
-      fontSize: 25,
-      fontWeight: 'bold',
-      textAlign: 'center',
-      marginBottom: 30,
-    },
-    container_block: {
-      width: 200,
-      // marginTop: 30,
-    },
-    input: {
-      textAlign: 'center',
-      marginVertical: 10,
-      backgroundColor: 'lightgreen',
-      fontSize: 16,
-    },
-  });
   return (
     <View
       style={{height: '100%', display: 'flex', justifyContent: 'space-around'}}>
@@ -55,6 +30,7 @@ const Login = ({navigation}) => {
             onChangeText={onChangeEmail}
             value={email}
             placeholder="Enter Email"
+            placeholderTextColor="black"
           />
           <TextInput
             style={styles.input}
@@ -62,13 +38,30 @@ const Login = ({navigation}) => {
             value={password}
             placeholder="Enter Password"
             secureTextEntry={true}
+            placeholderTextColor="black"
           />
           <Text style={{color: 'red', textAlign: 'right'}}>
             *Password not correct
           </Text>
           <Button
             title="Log-in"
-            onPress={() => navigation.navigate('service')}
+            onPress={() => {
+              if (password && email) {
+                if (email === 'demo@gmail.com' && password === 'demo') {
+                  navigation.navigate('profile');
+                } else {
+                  Alert.alert(
+                    'Test details',
+                    'Email: demo@gmail.com and password: demo',
+                  );
+                }
+              } else {
+                Alert.alert(
+                  'Enter Correct Detail',
+                  "Email or Password Can't be Blank",
+                );
+              }
+            }}
           />
         </View>
       </View>
@@ -97,5 +90,33 @@ const Login = ({navigation}) => {
     </View>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    // justifyContent: 'flex-start',
+  },
+  heading: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 30,
+  },
+  container_block: {
+    width: 200,
+    // marginTop: 30,
+  },
+  input: {
+    textAlign: 'center',
+    marginVertical: 10,
+    backgroundColor: 'lightgrey',
+    borderWidth: 1,
+    borderColor: 'black',
+    fontSize: 16,
+    color: 'black',
+  },
+});
 
-export default Login;
+export default LoginScreen;

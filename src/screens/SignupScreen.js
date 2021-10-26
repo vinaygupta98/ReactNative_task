@@ -1,22 +1,18 @@
 import React, {useState} from 'react';
 import {
   Button,
-  SafeAreaView,
   ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   Alert,
   TextInput,
-  useColorScheme,
   View,
 } from 'react-native';
-import Header from '../../common/Header';
-import Footer from '../../common/Footer';
-import RadioButton from '../../components/RadioButton';
-import {Link} from '@react-navigation/native';
+import Header from '../common/Header';
+import Footer from '../common/Footer';
+import RadioButton from '../components/RadioButton';
 
-const SignUp = ({navigation}) => {
+const SignupScreen = ({navigation}) => {
   const [data, setData] = useState({
     name: null,
     age: null,
@@ -42,8 +38,9 @@ const SignUp = ({navigation}) => {
     input: {
       textAlign: 'center',
       marginVertical: 5,
-      backgroundColor: 'lightgreen',
+      backgroundColor: 'lightgrey',
       fontSize: 16,
+      color: 'black',
     },
   });
   const Options = [
@@ -73,6 +70,7 @@ const SignUp = ({navigation}) => {
             onChangeText={e => setData({...data, name: e})}
             value={data.name}
             placeholder="Name"
+            placeholderTextColor="black"
           />
           <TextInput
             style={styles.input}
@@ -80,18 +78,21 @@ const SignUp = ({navigation}) => {
             value={data.age}
             placeholder="Age"
             keyboardType="numeric"
+            placeholderTextColor="black"
           />
           <TextInput
             style={styles.input}
             onChangeText={e => setData({...data, address: e})}
             value={data.address}
             placeholder="Localization"
+            placeholderTextColor="black"
           />
           <TextInput
             style={styles.input}
             onChangeText={e => setData({...data, email: e})}
             value={data.email}
             placeholder="Email"
+            placeholderTextColor="black"
           />
           <TextInput
             style={styles.input}
@@ -99,6 +100,7 @@ const SignUp = ({navigation}) => {
             value={data.password}
             placeholder="Password"
             secureTextEntry={true}
+            placeholderTextColor="black"
           />
           <Text style={{color: 'red', textAlign: 'right'}}>
             *Password not correct
@@ -106,12 +108,27 @@ const SignUp = ({navigation}) => {
 
           <Text
             style={{color: 'blue', textAlign: 'right', marginVertical: 10}}
-            onPress={() => navigation.navigate('service')}>
+            onPress={() => navigation.navigate('login')}>
             Already have a Account ?
           </Text>
           <Button
             title="Sign Up"
-            onPress={() => navigation.navigate('service')}
+            onPress={() => {
+              if (
+                data.email &&
+                data.name &&
+                data.password &&
+                data.address &&
+                data.age
+              ) {
+                navigation.navigate('profile');
+              } else {
+                Alert.alert(
+                  'Enter Correct Detail',
+                  "Any of the filed can't left blank ",
+                );
+              }
+            }}
           />
         </View>
       </View>
@@ -120,4 +137,4 @@ const SignUp = ({navigation}) => {
   );
 };
 
-export default SignUp;
+export default SignupScreen;
