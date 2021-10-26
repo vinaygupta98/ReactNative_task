@@ -5,7 +5,15 @@ const slides = [
   },
   {
     id: 2,
+    image: require('../images/old-women.jpg'),
+  },
+  {
+    id: 3,
     image: require('../images/hiking.jpg'),
+  },
+  {
+    id: 4,
+    image: require('../images/old-women.jpg'),
   },
 ];
 

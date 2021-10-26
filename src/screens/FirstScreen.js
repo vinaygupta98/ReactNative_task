@@ -23,6 +23,7 @@ const FirstScreen = ({navigation}) => {
             source={item.image}
             style={{
               height: 450,
+              width: 400,
             }}
           />
         )}
