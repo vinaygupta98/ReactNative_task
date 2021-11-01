@@ -107,6 +107,7 @@ const SignupScreen = ({navigation}) => {
                     'Success',
                     'Account Created Successfully!!.Kindly Login to use',
                   );
+                  navigation.navigate('login');
                 } else {
                   Alert.alert('Error', data.message);
                 }

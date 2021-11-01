@@ -11,18 +11,16 @@ const RankScreen = () => {
   useEffect(async () => {
     try {
       const authToken = await AsyncStorage.getItem('authToken');
-      const response = await fetch(
-        `${SERVER_API}/post/top?authToken=${authToken}`,
-        {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
+      const response = await fetch(`${SERVER_API}/post/top`, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
-      );
-      const data = await response.json();
-      setData(data);
+      });
+      // const data = await response.json();
+      // setData(data);
+      console.log(response);
     } catch (error) {
       console.log(error);
     }

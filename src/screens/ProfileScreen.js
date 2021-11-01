@@ -153,27 +153,29 @@ const ProfileScreen = ({navigation}) => {
               alignItems: 'center',
               paddingVertical: 10,
             }}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginRight: 20,
-              }}>
-              <Image
-                source={require('../images/image.png')}
+            <TouchableOpacity onPress={() => navigation.navigate('My Upload')}>
+              <View
                 style={{
-                  width: 25,
-                  height: 25,
-                }}
-              />
-              <Text
-                style={{
-                  paddingLeft: 5,
-                  fontSize: 20,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginRight: 20,
                 }}>
-                {userDetail.totalUpload}
-              </Text>
-            </View>
+                <Image
+                  source={require('../images/image.png')}
+                  style={{
+                    width: 25,
+                    height: 25,
+                  }}
+                />
+                <Text
+                  style={{
+                    paddingLeft: 5,
+                    fontSize: 20,
+                  }}>
+                  {userDetail.totalUpload}
+                </Text>
+              </View>
+            </TouchableOpacity>
             <View
               style={{
                 flexDirection: 'row',

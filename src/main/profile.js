@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {Image, Text, View} from 'react-native';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -11,6 +10,7 @@ import RankScreen from '../screens/RankScreen';
 import UploadNewScreen from '../screens/UploadNewScreen';
 import MyUploadScreen from '../screens/MyUploadScreen';
 import UpdateScreen from '../screens/UpdateScreen';
+import HomeScreen from '../screens/HomeScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -31,6 +31,13 @@ export default function Profile({navigation}) {
       }}>
       <Drawer.Screen
         name="Home"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Profile"
         component={ProfileScreen}
         options={{
           headerShown: false,

@@ -44,7 +44,7 @@ const UploadNewScreen = ({navigation}) => {
     if (photo) {
       try {
         const authToken = await AsyncStorage.getItem('authToken');
-        const response = await fetch(`${SERVER_API}/api/post`, {
+        const response = await fetch(`${SERVER_API}/post`, {
           method: 'POST',
           body: createFormData(photo, {
             authToken: authToken,
@@ -54,7 +54,7 @@ const UploadNewScreen = ({navigation}) => {
         const data = await response.json();
         if (data.success) {
           Alert.alert('Succes', 'Image Posted Successfully');
-          navigation.navigate('My Upload');
+          navigation.navigate('Home');
         } else {
           Alert.alert('Error', 'Error in Uploading Post');
         }
