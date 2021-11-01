@@ -79,7 +79,6 @@ const UpdateScreen = () => {
       );
       const data = await response.json();
       if (data.profileImage) {
-        console.log(data.profileImage);
         setPhoto({
           name: data.profileImage.fileName,
           type: data.profileImage.type,

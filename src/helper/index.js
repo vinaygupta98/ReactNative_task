@@ -1,5 +1,5 @@
 exports.SERVER_API = 'https://gcla-app.herokuapp.com/api';
-exports.SERVER = 'https://gcla-app.herokuapp.com/';
+exports.SERVER = 'https://gcla-app.herokuapp.com';
 exports.ShortFormatDate = date => {
   let monthNames = [
     'JAN',
