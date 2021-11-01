@@ -1,13 +1,11 @@
-import * as React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import React from 'react';
 import FirstScreen from '../screens/FirstScreen';
-import Login from '../screens/LoginScreen';
+import LoginScreen from '../screens/LoginScreen';
+import Profile from './profile';
 import SignUp from '../screens/SignupScreen';
-import Profile from '../screens/ProfileScreen';
-import Upload from '../screens/UploadScreen';
-import Rank from '../screens/RankScreen';
-import NewUpload from '../screens/NewUploadScreen.js';
+import {View, Text, Image} from 'react-native';
 
 const Main = () => {
   const Main = createStackNavigator();
@@ -20,34 +18,21 @@ const Main = () => {
           options={{headerShown: false}}
         />
         <Main.Screen
-          name="login"
-          component={Login}
-          options={{headerShown: false}}
-        />
-        <Main.Screen
           name="signup"
           component={SignUp}
           options={{headerShown: false}}
         />
         <Main.Screen
+          name="login"
+          component={LoginScreen}
+          options={{headerShown: false}}
+        />
+        <Main.Screen
           name="profile"
           component={Profile}
-          options={{headerShown: false}}
-        />
-        <Main.Screen
-          name="upload"
-          component={Upload}
-          options={{headerShown: false}}
-        />
-        <Main.Screen
-          name="Rank"
-          component={Rank}
-          options={{headerShown: true, headerTitleAlign: 'center'}}
-        />
-        <Main.Screen
-          name="Upload New"
-          component={NewUpload}
-          options={{headerShown: true, headerTitleAlign: 'center'}}
+          options={{
+            headerShown: false,
+          }}
         />
       </Main.Navigator>
     </NavigationContainer>

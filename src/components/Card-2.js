@@ -1,60 +1,64 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
+import {SERVER, ShortFormatDate} from '../helper';
 
-const Card2 = ({image, likeCount, date, location}) => (
-  <View
-    style={{
-      flexDirection: 'row',
-      width: 350,
-      borderBottomColor: 'black',
-      borderBottomWidth: 1,
-      paddingVertical: 5,
-    }}>
-    <Image
-      source={image}
-      style={{
-        width: 70,
-        height: 70,
-      }}
-    />
+const Card2 = ({fileName, uploadpath, likes, tag, createdAt}) => {
+  return (
     <View
       style={{
-        paddingHorizontal: 30,
-        flexGrow: 1,
+        flexDirection: 'row',
+        width: 350,
+        borderBottomColor: 'black',
+        borderBottomWidth: 1,
+        paddingVertical: 5,
       }}>
+      <Image
+        source={{uri: `${SERVER}/${fileName}`}}
+        style={{
+          width: 70,
+          height: 70,
+        }}
+      />
       <View
         style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
+          paddingHorizontal: 30,
+          flexGrow: 1,
         }}>
         <View
           style={{
             flexDirection: 'row',
-            paddingVertical: 10,
+            alignItems: 'center',
+            justifyContent: 'space-between',
           }}>
-          <Text
+          <View
             style={{
-              fontSize: 24,
-              paddingRight: 5,
+              flexDirection: 'row',
+              paddingVertical: 10,
             }}>
-            {likeCount}
-          </Text>
-          <Image
-            source={require('../images/heart.png')}
-            style={{
-              width: 25,
-              height: 25,
-            }}
-          />
+            <Text
+              style={{
+                fontSize: 24,
+                paddingRight: 5,
+              }}>
+              {likes}
+            </Text>
+            <Image
+              source={require('../images/heart.png')}
+              style={{
+                width: 25,
+                height: 25,
+              }}
+            />
+          </View>
+          <Text>{ShortFormatDate(createdAt)}</Text>
         </View>
-        <Text>{date}</Text>
-      </View>
-      <View>
-        <Text>{location}</Text>
+        <View>
+          <Text>{tag}</Text>
+          {/* <Text>{location}</Text> */}
+        </View>
       </View>
     </View>
-  </View>
-);
+  );
+};
 
 export default Card2;

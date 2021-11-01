@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 
-const RadioButton = ({options}) => {
-  const [selected, setSelected] = useState(null);
+const RadioButton = ({options, selected, setSelected}) => {
   const styles = StyleSheet.create({
     content: {
       display: 'flex',
       justifyContent: 'flex-end',
       alignItems: 'center',
+      width: '100%',
     },
     container: {
-      maxWidth: 350,
+      width: '75%',
       marginBottom: 15,
       alignItems: 'center',
       flexDirection: 'row',
@@ -18,13 +18,13 @@ const RadioButton = ({options}) => {
     },
     radioText: {
       width: 150,
-      fontSize: 20,
+      fontSize: 16,
       color: '#000',
       fontWeight: '700',
     },
     radioCircle: {
-      height: 30,
-      width: 30,
+      height: 15,
+      width: 15,
       borderRadius: 100,
       borderWidth: 2,
       borderColor: '#3740ff',
@@ -32,8 +32,8 @@ const RadioButton = ({options}) => {
       justifyContent: 'center',
     },
     selectedRb: {
-      width: 15,
-      height: 15,
+      width: 7.5,
+      height: 7.5,
       borderRadius: 50,
       backgroundColor: '#3740ff',
     },
@@ -53,9 +53,11 @@ const RadioButton = ({options}) => {
             <TouchableOpacity
               style={styles.radioCircle}
               onPress={() => {
-                setSelected(option.key);
+                setSelected(option);
               }}>
-              {selected === option.key && <View style={styles.selectedRb} />}
+              {selected.key === option.key && (
+                <View style={styles.selectedRb} />
+              )}
             </TouchableOpacity>
           </View>
         );

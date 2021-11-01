@@ -4,7 +4,7 @@ import Main from './main';
 const App = () => {
   return (
     <SafeAreaView>
-      <View style={{height: '100%', backgroundColor: '#fff'}}>
+      <View style={{height: '100%'}}>
         <StatusBar barStyle="default" />
         <Main />
       </View>

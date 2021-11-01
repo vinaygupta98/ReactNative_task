@@ -1,14 +1,41 @@
-import React, {useState, useEffect} from 'react';
-import {Text, View, Image, TextInput, TouchableOpacity} from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {useEffect, useState} from 'react';
+import {
+  Image,
+  Text,
+  TextInput,
+  View,
+  Platform,
+  TouchableOpacity,
+} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import {SERVER_API, SERVER} from '../helper';
 
 const ProfileScreen = ({navigation}) => {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  useEffect(() => {
-    if (value === 'upload') {
-      navigation.navgate('upload');
+  const [userDetail, setUserDetail] = useState({
+    name: 'UserName',
+    age: 'age',
+    phone: 'Phone no',
+    email: 'email',
+    uploaded: 0,
+  });
+  useEffect(async () => {
+    try {
+      const authToken = await AsyncStorage.getItem('authToken');
+      const response = await fetch(
+        `${SERVER_API}/auth/me?authToken=${authToken}`,
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+      const data = await response.json();
+      setUserDetail(data);
+    } catch (error) {
+      console.log(error);
     }
   }, []);
   return (
@@ -19,49 +46,35 @@ const ProfileScreen = ({navigation}) => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            marginHorizontal: 5,
+            marginHorizontal: 20,
           }}>
-          <Text> </Text>
-          <Text style={{fontSize: 24, paddingVertical: 5}}>Profile</Text>
-          <DropDownPicker
-            style={{width: 100, marginLeft: 180}}
-            open={open}
-            value={value}
-            items={[
-              {
-                label: 'Home ',
-                value: 'home',
-                icon: () => (
-                  <Image
-                    source={require('../images/home.png')}
-                    style={{width: 20, height: 20}}
-                  />
-                ),
-              },
-              {
-                label: 'My Uploade ',
-                value: 'upload',
-                icon: () => (
-                  <Image
-                    source={require('../images/user.png')}
-                    style={{width: 20, height: 20}}
-                  />
-                ),
-              },
-              {
-                label: 'Rank',
-                value: 'rank',
-                icon: () => (
-                  <Image
-                    source={require('../images/bar-chart.png')}
-                    style={{width: 20, height: 20}}
-                  />
-                ),
-              },
-            ]}
-            setOpen={setOpen}
-            setValue={setValue}
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <Image
+              style={{
+                height: 30,
+                width: 30,
+              }}
+              source={require('../images/menu.png')}
+            />
+          </TouchableOpacity>
+          <Image
+            style={{
+              height: 50,
+              width: 140,
+            }}
+            source={require('../images/logo.png')}
           />
+          <TouchableOpacity onPress={() => navigation.navigate('Update')}>
+            <Text
+              style={{
+                paddingHorizontal: 10,
+                paddingVertical: 5,
+                backgroundColor: 'lightgrey',
+                fontSize: 16,
+              }}>
+              Update
+            </Text>
+          </TouchableOpacity>
         </View>
         <View
           style={{
@@ -69,19 +82,63 @@ const ProfileScreen = ({navigation}) => {
             justifyContent: 'center',
             paddingTop: 20,
           }}>
-          <Image
-            source={require('../images/user-profile.png')}
+          {userDetail.profileImage ? (
+            <Image
+              source={{
+                uri: `${SERVER}/${userDetail.profileImage.fileName}`,
+              }}
+              style={{
+                height: 150,
+                width: 150,
+                paddingHorizontal: 30,
+                borderRadius: 100,
+              }}
+            />
+          ) : (
+            <Image
+              source={require('../images/user-profile.png')}
+              style={{
+                height: 150,
+                width: 150,
+                paddingHorizontal: 30,
+              }}
+            />
+          )}
+        </View>
+        <View
+          style={{
+            paddingVertical: 10,
+            marginLeft: 30,
+          }}>
+          <Text
             style={{
-              height: 200,
-              width: 200,
-              paddingHorizontal: 30,
-            }}
-          />
+              fontSize: 20,
+            }}>
+            Name: {userDetail.name}
+          </Text>
+          <Text
+            style={{
+              fontSize: 20,
+            }}>
+            Age: {userDetail.age}
+          </Text>
+          <Text
+            style={{
+              fontSize: 20,
+            }}>
+            Phone: {userDetail.phone}
+          </Text>
+          <Text
+            style={{
+              fontSize: 20,
+            }}>
+            EMail: {userDetail.email}
+          </Text>
         </View>
 
         <View
           style={{
-            paddingVertical: 20,
+            paddingVertical: 10,
             marginLeft: 30,
           }}>
           <Text
@@ -114,7 +171,7 @@ const ProfileScreen = ({navigation}) => {
                   paddingLeft: 5,
                   fontSize: 20,
                 }}>
-                124
+                {userDetail.totalUpload}
               </Text>
             </View>
             <View
@@ -154,7 +211,7 @@ const ProfileScreen = ({navigation}) => {
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              paddingVertical: 10,
+              paddingVertical: 5,
             }}>
             <Image
               source={require('../images/heart.png')}
@@ -169,66 +226,9 @@ const ProfileScreen = ({navigation}) => {
                 fontSize: 20,
                 color: 'grey',
               }}>
-              64
+              {userDetail.totalLikes}
             </Text>
           </View>
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            marginLeft: 20,
-          }}>
-          <Text
-            style={{
-              fontSize: 20,
-              marginRight: 5,
-            }}>
-            Motto
-          </Text>
-          <TextInput
-            style={{
-              borderWidth: 1,
-              fontSize: 20,
-              paddingVertical: 1,
-              paddingHorizontal: 40,
-            }}
-            placeholder="Hi , everyone"
-          />
-          <Text
-            style={{
-              backgroundColor: 'lightblue',
-              fontSize: 15,
-              textAlignVertical: 'center',
-              paddingHorizontal: 10,
-              marginLeft: 10,
-            }}>
-            Update
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            paddingVertical: 20,
-          }}>
-          <TouchableOpacity>
-            <Image
-              source={require('../images/user.png')}
-              style={{width: 70, height: 70}}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('Rank')}>
-            <Image
-              source={require('../images/bar-chart.png')}
-              style={{width: 70, height: 70}}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('Upload New')}>
-            <Image
-              source={require('../images/add.png')}
-              style={{width: 70, height: 70}}
-            />
-          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>
