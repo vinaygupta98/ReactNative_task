@@ -73,12 +73,12 @@ const SignupScreen = ({navigation}) => {
           />
           <Formik
             initialValues={{
-              name: 'demo',
-              email: 'demo@demo.com',
-              age: '12',
-              phone: '12121',
-              address: 'address',
-              password: 'demo',
+              name: '',
+              email: '',
+              age: '',
+              phone: '',
+              address: '',
+              password: '',
             }}
             validationSchema={Yup.object({
               name: Yup.string().required('required'),

@@ -63,7 +63,7 @@ const LoginScreen = ({navigation}) => {
     <View style={styles.container}>
       <Header />
       <Formik
-        initialValues={{email: 'demo@demo.com', password: 'demo'}}
+        initialValues={{email: '', password: ''}}
         validationSchema={Yup.object({
           email: Yup.string().email('Email is invalid').required('Required'),
           password: Yup.string().required('Required'),
