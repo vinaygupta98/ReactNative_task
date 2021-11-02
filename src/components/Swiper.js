@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, Alert} from 'react-native';
 import SwipeCards from 'react-native-swipe-cards-deck';
 import {SERVER_API, SERVER, ShortFormatDate} from '../helper';
 
