@@ -54,6 +54,8 @@ const UploadNewScreen = ({navigation}) => {
         const data = await response.json();
         if (data.success) {
           Alert.alert('Succes', 'Image Posted Successfully');
+          setPhoto(null);
+          setTag(null);
           navigation.navigate('Home');
         } else {
           Alert.alert('Error', 'Error in Uploading Post');

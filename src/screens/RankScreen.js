@@ -28,7 +28,6 @@ const RankScreen = () => {
         },
       });
       const data = await response.json();
-      console.log(data);
       setData(data);
       setRefreshing(false);
     } catch (error) {
