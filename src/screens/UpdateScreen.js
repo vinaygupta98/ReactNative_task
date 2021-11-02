@@ -29,7 +29,7 @@ const createFormData = (photo, body = {}) => {
 
   return data;
 };
-const UpdateScreen = () => {
+const UpdateScreen = ({navigation}) => {
   const [photo, setPhoto] = useState(null);
   const [profile, setProfile] = useState({
     name: null,
@@ -105,10 +105,17 @@ const UpdateScreen = () => {
         const authToken = await AsyncStorage.getItem('authToken');
         const response = await fetch(`${SERVER_API}/auth/update`, {
           method: 'POST',
-          body: createFormData(photo, {authToken: authToken, ...values}),
+          body: createFormData(photo, {
+            authToken: authToken,
+            name: values.name,
+            email: values.email,
+            age: values.age,
+            phone: values.phone,
+            address: values.address,
+          }),
         });
+
         const data = await response.json();
-        console.log(data);
         formikActions.setSubmitting(false);
         if (data.success) {
           Alert.alert('Succes', 'Detail updated successfully');
