@@ -1,5 +1,3 @@
-extract zip provided to
-
 Node Version : v16.1.0
 npm version : 8.1.0
 
@@ -16,15 +14,13 @@ to run android
 npm run android
 ```
 
-> Task :app:installDebug
-> Installing APK 'app-debug.apk' on 'RMX2020 - 11' for app:debug
-> Installed on 1 device
-
-you we find such message if no issue occur
-
-#BUILD SUCCESSFUL in 40s
-#101 actionable tasks: 2 executed, 99 up-to-date
-#info Connecting to the development server...
-#8081
-#info Starting the app on "W8YHC64L5HS4ZLOV"...
-#Starting: Intent { cmp=com.project/.MainActivity }
+This is social media like app-
+    Login User
+    Sigup User
+    Reset Password
+    Update Profile and Images
+    Like and dislike images
+    User can Uploade post their post too
+    
+    
+    
