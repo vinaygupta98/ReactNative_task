@@ -1,4 +1,14 @@
-Node Version : v16.1.0
+
+This is social media like app-
+* Login User
+* Sigup User
+* Reset Password
+* Update Profile and Images
+* Like and dislike images
+* User can Uploade post their post too
+    
+    
+    Node Version : v16.1.0
 npm version : 8.1.0
 
 first run
@@ -14,13 +24,5 @@ to run android
 npm run android
 ```
 
-This is social media like app-
-    Login User
-    Sigup User
-    Reset Password
-    Update Profile and Images
-    Like and dislike images
-    User can Uploade post their post too
-    
     
     
